@@ -1,2 +1,2 @@
-# how-hip-are-you
+# How Hip Are You
 Finally, see how hip you really are
