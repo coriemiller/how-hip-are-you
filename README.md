@@ -1,3 +1,3 @@
 # How Hip Are You?
 
-Finally, you can actually find out.
+Finally, you can find out.
