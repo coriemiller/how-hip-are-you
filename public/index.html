@@ -338,7 +338,7 @@
         function drawRow(rowData, counter) {
             var rawHipscore = 100 - parseInt(rowData.popularity);
             var genresClean = rowData.genres.toString().replace(/,/g , ", ");
-            var titlegenres = titleCase(genresClean).replace(/\&b/g, "&B");
+            // var titlegenres = titleCase(genresClean).replace(/\&b/g, "&B");
             var followersCommas = rowData.followers.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             var row = $("<tr />")
             $("#artist-info-table").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
@@ -347,7 +347,7 @@
             row.append($("<td>" + counter + "</td>"));
             row.append($("<td>" + rawHipscore+ "</td>"));
             row.append($("<td>" + followersCommas + "</td>"));
-            row.append($("<td>" + titlegenres + "</td>"));
+            row.append($("<td>" + genresClean + "</td>"));
         }
 
         var popularityAvg = 0,
