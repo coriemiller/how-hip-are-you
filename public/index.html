@@ -90,6 +90,7 @@
       .countdown {
         font-size: 60px;
       }
+
       #footnote{
         font-size: 14px;
         font-style: italic;
@@ -206,10 +207,15 @@
             <h1>Think you're hip, {{display_name}}? Let's find out.</h1>
         </div>
         <div class="thumbnail text-center">
-          <img class="media-object img-circle centered center-block mt-3 mb-3 hipswap" width="300" src="{{images.0.url}}"/>
-          <div class="caption">
-            <div class="countdown">3</div>
-          </div>
+          {{#if images.0.url}}
+            <img class="media-object img-circle centered center-block mt-3 mb-3 hipswap" width="300" src="{{images.0.url}}"/>
+            <div class="caption">
+              <div class="countdown">3</div>
+            </div>
+          {{/if}}
+          {{#unless images.0.url}}
+              <div class="countdown-no-image">3</div>
+          {{/unless}}
         </div>
       </div>
 
@@ -444,8 +450,8 @@
           document.getElementById('login-button').addEventListener('click', function() {
 
             var client_id = '7977c20b20f24edf83821a4a73cc2dd7'; // Your client id
-            //var redirect_uri = 'http://localhost:8080'; // Your redirect uri
-            var redirect_uri = 'https://how-hip-are-you.herokuapp.com'
+            var redirect_uri = 'http://localhost:8080'; // Your redirect uri
+            //var redirect_uri = 'https://how-hip-are-you.herokuapp.com'
 
             var state = generateRandomString(16);
 
