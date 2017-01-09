@@ -288,7 +288,7 @@
             tcounter = i + 1;
             drawRow(data[i], tcounter);
           }
-          popularityAvg = Math.round(100 - (popularitySum / data.length));
+          popularityAvg = (100 - (popularitySum / data.length)).toFixed(2);
           $(".media-body h1").text("Your hipscore is " + popularityAvg + "!");
 
 
