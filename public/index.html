@@ -151,6 +151,15 @@
     top:100%;
     }
 
+    .footer-link {
+    color: #4d4d4d;
+    }
+    .footer-link:hover, 
+    .footer-link:focus {
+        color: darkgrey;
+        text-decoration: underline;
+    }
+
     #jgDownload text:nth-child(8) tspan,jgDownload text:nth-child(9) tspan,jgDownload text:nth-child(10) tspan {
     font-size: 0.9em !important; 
     font-family: 'Oswald', sans-serif;
@@ -470,7 +479,7 @@
           }, false);
         }
       })();
-    $(".text-muted").append("<a href='mailto:hip.contact@how-hip-are-you.com'>Contact</a> | By c0Ri3 | " + new Date().getFullYear());
+    $(".text-muted").append("By c0Ri3 | " + new Date().getFullYear() + " | <a href='mailto:hip.contact@how-hip-are-you.com' class='footer-link'>Contact</a>");
 
     </script>
 </html>
