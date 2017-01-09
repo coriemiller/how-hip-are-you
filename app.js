@@ -8,7 +8,6 @@
  */
 
 var express = require('express'); // Express web server framework
-var port = process.env.PORT || 8080;
 var request = require('request'); // "Request" library
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
@@ -36,6 +35,8 @@ var generateRandomString = function(length) {
 var stateKey = 'spotify_auth_state';
 
 var app = express();
+var port = process.env.PORT || 8080;
+
 
 app.use(express.static(__dirname + '/public'))
    .use(cookieParser());
