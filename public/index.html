@@ -7,9 +7,10 @@
 <!--     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
  -->    
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="http://localhost:8888/favicon.ico" />
 
 
     <style type="text/css">
@@ -58,9 +59,8 @@
         margin-top: 15px;
         margin-bottom: 15px;
       }
-      #login-button {
+      button {
         margin-top: 30px;
-        max-width: 200px;
       }
 
       table {
@@ -162,7 +162,7 @@
     <div class="container">
       <div id="login">
         <h1>How hip are you?</h1>
-        <a href="/login" id="login-button" class="btn btn-primary centered center-block">Log in with Spotify</a>
+        <button id="login-button" class="btn btn-primary centered center-block">Log in with Spotify</button>
       </div>
       <div id="loggedin">
 
@@ -190,13 +190,7 @@
       <div id="footnote" style="display:none">
         Spotify assigns a relative popularity value to artists ranging from 0 - 100. The hipscore is 100 minus the Spotify popularity value. Your hipscore is the average hipscore of your top 20 artists. The higher your hipscore is, the more hip you are. Go turn off that Drake you basic bitch and <i>get hip</i>.
       </div>
-
-
-        <div id="oauth">
-        </div>
-        <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
       </div>
-
     </div>
 
     <footer class="footer" style="display:none">
@@ -204,7 +198,6 @@
         <p class="text-muted"></p>
       </div>
     </footer>
-
 
 
     <script id="user-profile-template" type="text/x-handlebars-template">
@@ -231,16 +224,15 @@
     </script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="js/raphael-2.1.4.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+    <script src="js/kuma-gauge.jquery.js"></script>
     <script src="js/justgage.js"></script>
 
     <script>
       (function() {
-                  $('#oauth').hide();
-                  $('#obtain-new-token').hide();
 
-        // var stateKey = 'spotify_auth_state';
+        var stateKey = 'spotify_auth_state';
 
         /**
          * Obtains parameters from the hash of the URL
@@ -348,7 +340,7 @@
         function drawRow(rowData, counter) {
             var rawHipscore = 100 - parseInt(rowData.popularity);
             var genresClean = rowData.genres.toString().replace(/,/g , ", ");
-            // var titlegenres = titleCase(genresClean).replace(/\&b/g, "&B");
+            var titlegenres = titleCase(genresClean).replace(/\&b/g, "&B");
             var followersCommas = rowData.followers.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             var row = $("<tr />")
             $("#artist-info-table").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
@@ -357,7 +349,7 @@
             row.append($("<td>" + counter + "</td>"));
             row.append($("<td>" + rawHipscore+ "</td>"));
             row.append($("<td>" + followersCommas + "</td>"));
-            row.append($("<td>" + genresClean + "</td>"));
+            row.append($("<td>" + titlegenres + "</td>"));
         }
 
         var popularityAvg = 0,
@@ -376,24 +368,16 @@
 
         var params = getHashParams();
 
-        // var access_token = params.access_token,
-        //     state = params.state,
-        //     storedState = localStorage.getItem(stateKey);
-
         var access_token = params.access_token,
-            refresh_token = params.refresh_token,
-            error = params.error;
-        
-        if (error) {
-          alert('There was an error during the authentication');
-        } else {
-          if (access_token) {
-            // render oauth info
-            oauthPlaceholder.innerHTML = oauthTemplate({
-              access_token: access_token,
-              refresh_token: refresh_token
-            });
+            state = params.state,
+            storedState = localStorage.getItem(stateKey);
 
+        if (access_token && (state == null || state !== storedState)) {
+          // alert('There was an error during the authentication');
+          window.location.href = "/";
+        } else {
+          localStorage.removeItem(stateKey);
+          if (access_token) {
             $.ajax({
                 url: 'https://api.spotify.com/v1/me',
                 headers: {
@@ -401,6 +385,7 @@
                 },
                 success: function(response) {
                   userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+
                   $('#login').hide();
                   $('#loggedin').show();
                 }
@@ -445,21 +430,25 @@
               $('#loggedin').hide();
           }
 
-            document.getElementById('obtain-new-token').addEventListener('click', function() {
-            $.ajax({
-              url: '/refresh_token',
-              data: {
-                'refresh_token': refresh_token
-              }
-            }).done(function(data) {
-              access_token = data.access_token;
-              oauthPlaceholder.innerHTML = oauthTemplate({
-                access_token: access_token,
-                refresh_token: refresh_token
-              });
-            });
-          }, false);
+          document.getElementById('login-button').addEventListener('click', function() {
 
+            var client_id = '7977c20b20f24edf83821a4a73cc2dd7'; // Your client id
+            var redirect_uri = 'http://localhost:8080'; // Your redirect uri
+
+            var state = generateRandomString(16);
+
+            localStorage.setItem(stateKey, state);
+            var scope = 'user-read-private user-read-email user-top-read';
+
+            var url = 'https://accounts.spotify.com/authorize';
+            url += '?response_type=token';
+            url += '&client_id=' + encodeURIComponent(client_id);
+            url += '&scope=' + encodeURIComponent(scope);
+            url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
+            url += '&state=' + encodeURIComponent(state);
+
+            window.location = url;
+          }, false);
         }
       })();
     $(".text-muted").text("Made by Corie | " + new Date().getFullYear());
