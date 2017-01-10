@@ -1,0 +1,150 @@
+    html {
+      position: relative;
+      min-height: 100%;
+    }
+    body {
+      /* Margin bottom by footer height */
+      margin-bottom: 30px;
+      color: #4d4d4d;
+      font-family: 'Roboto Slab', sans-serif;
+    }
+    .caption {
+        position: absolute;
+        top: 30%;
+        left: 0;
+        width: 100%;
+        color: white !important;
+    }
+    .thumbnail {
+        position: relative;
+        border: none;
+    }
+      #login, #loggedin {
+        display: none;
+      }
+      #login {
+        margin-top: 18%;
+      }
+      .text-overflow {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 500px;
+      }
+
+      .img-circle {
+          border-radius: 50%;
+          opacity: .8;
+      }
+      .media {
+        margin-bottom: 25px;
+      }
+      .media-body {
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
+      button {
+        margin-top: 30px;
+      }
+
+      table {
+        outline: 1px solid #666;   
+        width: 100%;
+      }
+      h1 {
+        font-size: 50px;
+      }
+      h1, .hip, h2 {
+          text-align: center;    
+        }
+
+      th {
+        background: #f8f8f8; 
+        font-weight: bold;    
+        padding: 2px;
+      }
+      td {
+        padding: 2px;
+        vertical-align: middle;
+      }
+      tr {
+        padding:8px;
+        vertical-align: middle;
+      }
+      .countdown {
+        font-size: 60px;
+      }
+
+      #footnote{
+        font-size: 14px;
+        font-style: italic;
+        margin: 20px 0;
+      }
+      .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        /* Set the fixed height of the footer here */
+        height: 30px;
+        background-color: #f5f5f5;
+      }
+      .text-muted {
+        text-align: center;
+      }
+
+      .container-footer {
+        width: auto;
+        padding: 0 15px;
+      }
+      .container-footer .text-muted {
+        margin: 5px 0;
+      }
+
+        .clear:before,
+        .clear:after {
+            content: "";
+            display: table;
+        }
+
+        .clear:after {
+            clear: both;
+        }
+
+        .clear {
+            *zoom: 1;
+        }
+
+    #hip-gauge {
+        display: block;
+        box-sizing: border-box;
+        margin: auto;
+        margin-bottom: 30px;
+        width: 85%;
+
+    }
+    .h-split {
+        display: block;
+        float: left;
+        width: 1%;
+        min-height: 100px;
+    }
+    
+
+    .below {
+    position: absolute;
+    top:100%;
+    }
+
+    .footer-link {
+    color: #999;
+    }
+    .footer-link:hover, 
+    .footer-link:focus {
+        color: darkgrey;
+        text-decoration: underline;
+    }
+
+    #jgDownload text:nth-child(8) tspan,jgDownload text:nth-child(9) tspan,jgDownload text:nth-child(10) tspan {
+    font-size: 0.9em !important; 
+    font-family: 'Oswald', sans-serif;
+  }
