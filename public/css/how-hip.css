@@ -15,6 +15,12 @@
         width: 100%;
         color: white !important;
     }
+    .countdown-no-image {
+        top: 30%;
+        left: 0;
+        width: 100%;
+        font-size: 50px;
+    }
     .thumbnail {
         position: relative;
         border: none;

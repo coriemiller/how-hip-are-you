@@ -196,19 +196,10 @@
                         $("tspan").css("font-family", "Roboto Slab");
                         clearInterval(id);
                     } else if (counter == 0) {
-                        if ($(".caption")) {
-                          $(".caption div").text("Hip!");
-                        } else{
-                          $(".countdown-no-image").text("Hip!");
-                        }
+                          $(".swapper div").text("Hip!");
                     } else {
-                        if ($(".caption")) {
-                          $(".caption div").text(counter.toString());
-                        } else {
-                          $(".countdown-no-image").text(counter.toString());
+                          $(".swapper div").text(counter.toString());
                         }
-                        
-                    }
                 }, 1000);
                 }
             });
@@ -224,7 +215,6 @@
             var client_id = '7977c20b20f24edf83821a4a73cc2dd7'; // Your client id
             //var redirect_uri = 'http://localhost:8080'; // Your redirect uri
             var redirect_uri = 'http://www.how-hip-are-you.com'
-            //var redirect_uri = 'https://how-hip-are-you.herokuapp.com'
 
             var state = generateRandomString(16);
 
