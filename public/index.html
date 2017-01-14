@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="css/how-hip.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="http://localhost:8888/favicon.ico" />
   </head>
 
   <body>
@@ -61,6 +60,7 @@
 
     <script id="user-profile-template" type="text/x-handlebars-template">
       <div class="media">
+        {{#if display_name}}
         <div class="media-body">
             <h1>Think you're hip, {{display_name}}? Let's find out.</h1>
         </div>
@@ -77,6 +77,10 @@
               </div>
           {{/unless}}
         </div>
+        {{/if}}
+        {{#unless display_name}}
+        <h1>Sorry, you don't have enough data in Spotify. Try again later!</h1>
+        {{/unless}}
       </div>
 
     </script>

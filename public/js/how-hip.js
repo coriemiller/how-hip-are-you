@@ -196,32 +196,31 @@ var userdata = new Array;
             'Authorization': 'Bearer ' + access_token
           },
           success: function(response) {
-
-          //countdown
-          var hipMeter = document.getElementsByClassName("thumbnail");
-          var counter = 3;
-          hipMeter.innerHTML = "3";
-          var id;
-          id = setInterval(function() {
-              counter--;
-              if(counter < 0) {
-                  $(hipMeter).hide();
-                  //make meter, table
-                  $(".table-responsive").removeAttr("style");
-                  drawTable(response.items);
-                  $("#table-title").removeAttr("style");
-                  $("#footnote").removeAttr("style");
-                  $("footer").removeAttr("style");
-                  $("tspan").css("font-family", "Roboto Slab");
-                  clearInterval(id);
-              } else if (counter == 0) {
-                    $(".swapper div").text("Hip!");
-              } else {
-                    $(".swapper div").text(counter.toString());
-                  }
-          }, 1000);
-
-
+            if (response.items.length > 0) {
+              //countdown
+              var hipMeter = document.getElementsByClassName("thumbnail");
+              var counter = 3;
+              hipMeter.innerHTML = "3";
+              var id;
+              id = setInterval(function() {
+                  counter--;
+                  if(counter < 0) {
+                      $(hipMeter).hide();
+                      //make meter, table
+                      $(".table-responsive").removeAttr("style");
+                      drawTable(response.items);
+                      $("#table-title").removeAttr("style");
+                      $("#footnote").removeAttr("style");
+                      $("footer").removeAttr("style");
+                      $("tspan").css("font-family", "Roboto Slab");
+                      clearInterval(id);
+                  } else if (counter == 0) {
+                        $(".swapper div").text("Hip!");
+                  } else {
+                        $(".swapper div").text(counter.toString());
+                      }
+              }, 1000);
+            }
           }
       });
       
@@ -253,4 +252,4 @@ var userdata = new Array;
     }, false);
   }
 })();
-$(".text-muted").append("By c0Ri3 | " + new Date().getFullYear() + " | <a href='mailto:hip.contact@how-hip-are-you.com' class='footer-link'>Contact</a> | <a href='https://github.com/coriemiller/how-hip-are-you' target=_blank class='footer-link'>&lt;/&gt;</a> <iframe style='float:right!important' src='https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fwww.how-hip-are-you.com%2F&amp;layout=button_count&amp;size=small&amp;mobile_iframe=true&amp;width=69&amp;height=20&amp;appId' width='69' height='20' scrolling='no' frameborder='0' allowtransparency='true'></iframe>");
+$(".text-muted").append("By c0Ri3 | " + new Date().getFullYear() + " | <a href='mailto:hip.contact@how-hip-are-you.com' class='footer-link'>Contact</a> | <a href='https://github.com/coriemiller/how-hip-are-you' target=_blank class='footer-link'>&lt;/&gt;</a> <iframe align='right' src='https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fwww.how-hip-are-you.com%2F&amp;layout=button_count&amp;size=small&amp;mobile_iframe=true&amp;width=69&amp;height=20&amp;appId' width='69' height='20' scrolling='no' frameborder='0' allowtransparency='true'></iframe>");

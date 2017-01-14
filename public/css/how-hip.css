@@ -145,9 +145,7 @@
     color: #999;
     }
     .footer-link:hover, 
-    .footer-link:focus,
-    .media-body > a:hover,
-    .media-body > a:focus {
+    .footer-link:focus,{
         color: darkgrey;
         text-decoration: underline;
     }
@@ -156,3 +154,4 @@
     font-size: 0.9em !important; 
     font-family: 'Oswald', sans-serif;
   }
+
