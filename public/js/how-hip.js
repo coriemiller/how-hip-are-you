@@ -168,7 +168,6 @@ var userdata = new Array;
       storedState = localStorage.getItem(stateKey);
 
   if (access_token && (state == null || state !== storedState)) {
-    // alert('There was an error during the authentication');
     window.location.href = "/";
   } else {
     localStorage.removeItem(stateKey);
@@ -234,7 +233,7 @@ var userdata = new Array;
     document.getElementById('login-button').addEventListener('click', function() {
 
       var client_id = '7977c20b20f24edf83821a4a73cc2dd7'; // Your client id
-      //var redirect_uri = 'http://localhost:8080'; // Your redirect uri
+      var redirect_uri = 'http://localhost:8080'; // Your redirect uri
       var redirect_uri = 'http://www.how-hip-are-you.com'
 
       var state = generateRandomString(16);
@@ -253,4 +252,4 @@ var userdata = new Array;
     }, false);
   }
 })();
-$(".text-muted").append("By c0Ri3 | " + new Date().getFullYear() + " | <a href='mailto:hip.contact@how-hip-are-you.com' class='footer-link'>Contact</a>");
+$(".text-muted").append("By c0Ri3 | " + new Date().getFullYear() + " | <a href='mailto:hip.contact@how-hip-are-you.com' class='footer-link'>Contact</a> | <a href='https://github.com/coriemiller/how-hip-are-you' target=_blank class='footer-link'>&lt;/&gt;</a>");
