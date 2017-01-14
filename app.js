@@ -20,10 +20,10 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json()); // support json encoded bodies
 
 var db;
-var uri = 'mongodb://heroku_qm9j4rsd:b86aqvopik4rkfv9u3h4n9ib4o@ds111489.mlab.com:11489/heroku_qm9j4rsd';
+// var uri = 'mongodb://heroku_qm9j4rsd:b86aqvopik4rkfv9u3h4n9ib4o@ds111489.mlab.com:11489/heroku_qm9j4rsd';
 
 // Connect to the database before starting the application server.
-mongodb.MongoClient.connect(uri, function (err, database) {
+mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
   if (err) {
     console.log(err);
     process.exit(1);
