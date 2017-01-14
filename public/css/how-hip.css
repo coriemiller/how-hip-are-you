@@ -141,11 +141,13 @@
     top:100%;
     }
 
-    .footer-link {
+    .footer-link, .media-body > a {
     color: #999;
     }
     .footer-link:hover, 
-    .footer-link:focus {
+    .footer-link:focus,
+    .media-body > a:hover,
+    .media-body > a:focus {
         color: darkgrey;
         text-decoration: underline;
     }
