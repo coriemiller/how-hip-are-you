@@ -57,6 +57,8 @@ var userdata = new Array;
     popularityAvg = (100 - (popularitySum / data.length)).toFixed(2);
     //swap header
     $(".media-body h1").text("Your hipscore is " + popularityAvg).append('<a href="#footnote" style="color: #4d4d4d;">*</a>');
+    //add og tag
+    $("meta[property='og\\:title']").attr("content", "My hipscore is " + popularityAvg + ". What's yours?");
     //add hipscore to userdata array
     userdata.push(popularityAvg);
     var date = new Date();  
@@ -184,7 +186,6 @@ var userdata = new Array;
             $('#loggedin').show();
 
             userdata.push(response.display_name, response.email, response.country, response.id);
-            console.log(response);
 
           }
       });
@@ -233,7 +234,7 @@ var userdata = new Array;
     document.getElementById('login-button').addEventListener('click', function() {
 
       var client_id = '7977c20b20f24edf83821a4a73cc2dd7'; // Your client id
-      var redirect_uri = 'http://localhost:8080'; // Your redirect uri
+      //var redirect_uri = 'http://localhost:8080'; // Your redirect uri
       var redirect_uri = 'http://www.how-hip-are-you.com'
 
       var state = generateRandomString(16);
@@ -252,4 +253,4 @@ var userdata = new Array;
     }, false);
   }
 })();
-$(".text-muted").append("By c0Ri3 | " + new Date().getFullYear() + " | <a href='mailto:hip.contact@how-hip-are-you.com' class='footer-link'>Contact</a> | <a href='https://github.com/coriemiller/how-hip-are-you' target=_blank class='footer-link'>&lt;/&gt;</a>");
+$(".text-muted").append("By c0Ri3 | " + new Date().getFullYear() + " | <a href='mailto:hip.contact@how-hip-are-you.com' class='footer-link'>Contact</a> | <a href='https://github.com/coriemiller/how-hip-are-you' target=_blank class='footer-link'>&lt;/&gt;</a> <iframe style='float:right!important' src='https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fwww.how-hip-are-you.com%2F&amp;layout=button_count&amp;size=small&amp;mobile_iframe=true&amp;width=69&amp;height=20&amp;appId' width='69' height='20' scrolling='no' frameborder='0' allowtransparency='true'></iframe>");
