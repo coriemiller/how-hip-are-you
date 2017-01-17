@@ -197,6 +197,7 @@ var userdata = new Array;
           },
           success: function(response) {
             if (response.items.length > 0) {
+              console.log(response);
               //countdown
               var hipMeter = document.getElementsByClassName("thumbnail");
               var counter = 3;
