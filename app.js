@@ -32,7 +32,8 @@ app.use(bodyParser.json()); // support json encoded bodies
     var port = server.address().port;
     console.log("App now running on port", port);
   });
-});
+//commented out the below due to error?
+// });
 
 //old connection
 // var port = process.env.PORT || 8080;
