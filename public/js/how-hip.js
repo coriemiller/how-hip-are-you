@@ -64,12 +64,13 @@ var userdata = new Array;
     var date = new Date();  
     var jsondata = '{"date":"' + date +'", "username" : "' + userdata[0]+ '", "email" : "' + userdata[1]+ '" , "country" : "' + userdata[2]+ '","user_id" : "' + userdata[3]+ '", "hipscore" : "' + userdata[4] + '" }';
 
-    $.ajax({
-        url: '/userhipscore',
-        type: "POST",
-        data: jsondata,
-        contentType: "application/json",
-    });
+    // testing no db
+    // $.ajax({
+    //     url: '/userhipscore',
+    //     type: "POST",
+    //     data: jsondata,
+    //     contentType: "application/json",
+    // });
     
 
     //build hip gage component
